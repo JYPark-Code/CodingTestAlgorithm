@@ -1,6 +1,5 @@
 def solution(genres, plays):
     
-
     # 장르별로 곡과 재생 수를 담을 딕셔너리 생성
     album = {}
 
