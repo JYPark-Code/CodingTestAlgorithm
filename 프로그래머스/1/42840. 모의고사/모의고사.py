@@ -1,21 +1,36 @@
 def solution(answers):
+    # 패턴
+    a = [1, 2, 3, 4, 5] # 5
+    b = [2, 1, 2, 3, 2, 4, 2, 5] # 8
+    c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5] # 10
+    
+    ac = 0
+    bc = 0
+    cc = 0
+    
     answer = []
-    p1 = [1, 2, 3, 4, 5]
-    p2 = [2, 1, 2, 3, 2, 4, 2, 5]
-    p3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
-    scores = [0, 0, 0]  # 각 학생들의 점수를 기록할 리스트
-
-    for idx, ans in enumerate(answers):
-        if ans == p1[idx % len(p1)]:
-            scores[0] += 1
-        if ans == p2[idx % len(p2)]:
-            scores[1] += 1
-        if ans == p3[idx % len(p3)]:
-            scores[2] += 1
-        # print(scores)
-    max_score = max(scores)  # 가장 높은 점수
-    for idx, score in enumerate(scores, 1):
-        if score == max_score:
-            answer.append(idx)
-
+    
+    for index, num in enumerate(answers):
+        if num == a[index % len(a)]:
+            ac += 1
+            
+        if num == b[index % len(b)]:
+            bc += 1
+            
+        if num == c[index % len(c)]:
+            cc += 1
+        
+    # 최대 정답 수 계산
+    max_num = max(ac, bc, cc)
+    
+    # 가장 많이 맞춘 사람의 번호 추가
+    if max_num == ac:
+        answer.append(1)
+        
+    if max_num == bc:
+        answer.append(2)
+        
+    if max_num == cc:
+        answer.append(3)
+        
     return answer
