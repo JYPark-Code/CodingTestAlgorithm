@@ -1,17 +1,13 @@
 def solution(numbers, target):
-    leaves = [0]               
-    count = 0 
+    count = [0]  # 리스트로 선언하면 내부 함수에서 참조/수정 가능
 
-    for num in numbers : 
-        temp = []
-	
-        # 자손 노드 
-        for leaf in leaves : 
-            temp.append(leaf + num)    # 더하는 경우 
-            temp.append(leaf - num)    # 빼는 경우 
+    def dfs(index, total):
+        if index == len(numbers):
+            if total == target:
+                count[0] += 1
+            return
+        dfs(index + 1, total + numbers[index])
+        dfs(index + 1, total - numbers[index])
 
-        leaves = temp
-    
-    # print(leaves)
-    
-    return leaves.count(target)
+    dfs(0, 0)
+    return count[0]
