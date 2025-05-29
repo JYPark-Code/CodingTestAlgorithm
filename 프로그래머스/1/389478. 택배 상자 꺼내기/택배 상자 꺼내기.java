@@ -1,46 +1,42 @@
+import java.util.*;
+
 class Solution {
     public int solution(int n, int w, int num) {
-        int answer = 0;
-  
-        //N = MAX_NUM, W = 넓이, NUM = CHOICE NUM
-        int []width_num = new int[w];
-        for(int i=0; i<w;i++)
-        {
-            width_num[i]=n/w;
+        List<Integer> boxes = new ArrayList<>();
+
+        int base = n / w;     // 기본적으로 각 열에 몇 개씩 들어가는가
+        int mod = n % w;      // 나머지 상자 수
+
+        // 기본 높이 배분
+        for (int i = 0; i < w; i++) {
+            boxes.add(base);
         }
-        
-        if(n/w%2!=0) //홀수일 경우 오른쪽 시작 
-        {
-            for(int i=w-1;i>w-1-n%w;i--)
-            {
-                width_num[i]+=1;
+
+        // 분배 방향: base(=줄 수)의 홀짝에 따라 오른쪽 또는 왼쪽부터 채움
+        if (base % 2 == 0) {
+            // 짝수 → 왼쪽부터
+            for (int i = 0; i < mod; i++) {
+                boxes.set(i, boxes.get(i) + 1);
+            }
+        } else {
+            // 홀수 → 오른쪽부터
+            for (int i = w - 1; i >= w - mod; i--) {
+                boxes.set(i, boxes.get(i) + 1);
             }
         }
-        
-        else if(n/w%2==0) 
-        {
-            for(int i=0;i<n%w;i++)
-            {
-                width_num[i]+=1;
-            }
+
+        // num 좌표 계산 (0-based)
+        int numIndex = num - 1;
+        int y = numIndex / w;
+        int x = numIndex % w;
+
+        // 홀수 줄이면 반전
+        if (y % 2 == 1) {
+            x = w - 1 - x;
         }
-    
-        if(num%w==0 && num/w%2==0){  
-            
-            answer = width_num[0]-num/w+1;
-        }
-        else if(num%w==0 && num/w%2!=0){ 
-           
-            answer = width_num[w-1]-num/w+1;
-        }
-        
-        if(num/w%2==0 && num%w!=0){
-            
-            answer = width_num[num%w-1]-num/w;
-        }
-        else if(num/w%2!=0 && num%w!=0){
-            answer = width_num[w-num%w]-num/w;
-        }
-        return answer; 
+
+        // 정답: 해당 열 높이 - y
+        int answer = boxes.get(x) - y;
+        return answer;
     }
 }
