@@ -24,7 +24,7 @@ def solution(genres, plays):
     for genre in sorted_genres:
         # 해당 장르에서 재생 수가 많은 순으로 정렬 (재생 수가 같다면 인덱스 순으로 정렬)
         top_songs = sorted(album[genre], key=lambda x: (-x[0], x[1]))
-        print(top_songs)
+        # print(top_songs)
         
         # 최대 두 곡의 인덱스를 result에 추가
         result.extend([index for _, index in top_songs[:2]])
