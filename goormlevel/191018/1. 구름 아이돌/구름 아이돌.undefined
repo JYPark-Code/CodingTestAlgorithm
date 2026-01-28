@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N = int(input())
+scores = list(map(int, input().split()))
+
+three_list = list()
+
+for _ in range(3):
+	idx = scores.index(max(scores))
+	three_list.append(idx + 1)
+	scores[idx] = 0
+
+print(" ".join(map(str, three_list)))
