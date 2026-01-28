@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+text_length = input()
+text = input()
+result = ""
+# index = 0
+for ch in text:
+	# print(index," ",ch)
+	# index += 1
+	if ch.isupper():
+		# print(ch, "is Uppercase")
+		result += ch.lower()
+	elif ch.islower():
+		# print(ch, "is Lowercase")
+		result += ch.upper()
+		
+print(result)
+# print ("Hello Goorm! Your input is " + user_input)
