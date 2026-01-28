@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N, K = input().split()   # K는 문자열 패턴 1개
+nums = input().split()  # 숫자들
+
+count = 0
+for n in nums:
+    if K not in n:
+        count += 1
+
+print(count)
+
+
