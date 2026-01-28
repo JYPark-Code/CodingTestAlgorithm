@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+import math
+num = int(input())
+
+# def rec_factorial(n):
+# 	if(n == 1):
+# 		return 1
+# 	return n * rec_factorial(n - 1)
+# print (rec_factorial(num) % 1_000_000_007)
+
+print(math.factorial(num) % 1_000_000_007)
