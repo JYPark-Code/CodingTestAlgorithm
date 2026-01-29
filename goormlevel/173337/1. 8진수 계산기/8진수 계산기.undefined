@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N = int(input())
+num_list = list(map(int, input().split()))
+
+n = sum(num_list)
+print(format(n, 'o'))
