@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+
+import sys
+input = sys.stdin.readline
+
+n = int(input().strip())
+events = [tuple(map(int, input().split())) for _ in range(n)]
+
+# 종료 시간 기준 정렬 (동률이면 시작 시간)
+events.sort(key=lambda x: (x[1], x[0]))
+
+cnt = 0
+last_end = -1  # s_i >= 1 이라 -1이면 첫 행사 무조건 후보
+
+for s, e in events:
+    # "종료 후 바로 다음 행사 불가" => 최소 1시간 지난 뒤 시작 => s > last_end
+    if s > last_end:
+        cnt += 1
+        last_end = e
+
+print(cnt)
