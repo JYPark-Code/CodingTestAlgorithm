@@ -1,7 +1,11 @@
-numbers = []
+import sys
+input = sys.stdin.readline
+
+nums_list = list()
 for _ in range(9):
-    i = int(input())
-    numbers.append(i)
-    
-print(max(numbers))
-print(numbers.index(max(numbers))+1)
+    nums_list.append(int(input()))
+
+max_num = max(nums_list)
+
+print(max_num)
+print(nums_list.index(max_num) + 1)
