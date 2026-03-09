@@ -1,0 +1,36 @@
+import math
+import sys
+input = sys.stdin.readline
+
+def is_prime(n):
+
+    if n < 2:
+        return False
+
+    if n == 2:
+        return True
+
+    if n % 2 == 0:
+        return False
+
+    # for i in range(3, int(math.sqrt(n)) + 1, 2):
+    #     if n % i == 0:
+    #         return False
+
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+
+    return True
+
+N = int(input())
+num_list = list(map(int, input().split()))
+answer = 0
+
+for num in num_list:
+    if is_prime(num):
+        answer += 1
+
+print(answer)
