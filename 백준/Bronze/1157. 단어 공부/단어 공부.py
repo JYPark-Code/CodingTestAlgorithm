@@ -1,13 +1,12 @@
 from collections import Counter
 
-s = input().upper()
+s = input().upper() # MISSISSIPPI
 c = Counter(s)
 
-max_count = max(c.values())
+# 최상위 2개만 뽑아내기 - better
+top = c.most_common(2) # [('I', 4), ('S', 4)]
 
-if list(c.values()).count(max_count) > 1:
+if len(top) > 1 and top[0][1] == top[1][1]:
     print("?")
 else:
-    for k, v in c.items():
-        if v == max_count:
-            print(k)
+    print(top[0][0])
