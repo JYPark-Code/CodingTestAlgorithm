@@ -2,24 +2,25 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-towers = list(map(int, input().split()))
+tower_info = list(map(int, input().split()))
 
-stack = []  # (index, height)
+t_stack = []
 answer = []
+answer_idx = -1
 
-for i in range(N):
-    height = towers[i]
+for idx, height in enumerate(tower_info):
+    answer_idx = idx + 1
 
-    # 스택에 있는 타워 중, 현재 타워보다 작은 것들은 제거
-    while stack and stack[-1][1] < height:
-        stack.pop()
+    while t_stack and t_stack[-1][1] < height:
+        t_stack.pop()
 
-    if stack:
-        answer.append(stack[-1][0] + 1)  # 1-based index
-    else:
+    if not t_stack:
         answer.append(0)
 
-    # 현재 타워 push
-    stack.append((i, height))
+    else:
+        answer.append(t_stack[-1][0])
 
-print(*answer)
+    t_stack.append((answer_idx, height))
+
+
+print(" ".join(map(str, answer)))
