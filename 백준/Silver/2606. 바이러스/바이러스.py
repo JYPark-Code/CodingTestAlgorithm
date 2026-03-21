@@ -1,28 +1,25 @@
-# 1번 컴퓨터 감염, DFS 문제로 판단
+import sys
+input = sys.stdin.readline
 
-comp = int(input())
-node = int(input())
+computers = int(input())
+links = int(input())
+graph = [[] for _ in range(computers+1)]
 
-graph = [[] for _ in range(comp + 1)]
+visited = set()
 
-for _ in range(node):
+for _ in range(links):
     a, b = map(int, input().split())
     graph[a].append(b)
     graph[b].append(a)
 
-# print(graph)
+def dfs(node):
+    for next_node in graph[node]:
+        if next_node not in visited:
+            visited.add(next_node)
+            dfs(next_node)
 
-# 노드 방문 여부
-visited = [False] * (comp + 1)
-
-
-# 연결된 노드 다 방문 하기
-def dfs(x):
-    visited[x] = True
-    for i in graph[x]:
-        if not visited[i]:
-            dfs(i)
-
+visited.add(1)
 dfs(1)
+# print(graph)
 # print(visited)
-print(sum(visited) - 1)
+print(len(visited) - 1)
